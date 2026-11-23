@@ -1,0 +1,12 @@
+:root {
+  font: 16px/1.5 system-ui, sans-serif;
+  color: #1f332e;
+  background: #f7f6ef;
+}
+main { max-width: 54rem; margin: auto; padding: clamp(2rem, 7vw, 5rem) 1rem; }
+small { font-size: .85rem; color: #395c50; }
+h1 { font-size: clamp(3rem, 10vw, 6rem); line-height: 1; letter-spacing: -.065em; margin: .5rem 0 1.5rem; }
+h1 span { color: #cb5729; }
+.action { display: inline-block; background: #215443; color: white; padding: .75rem 1rem; border-radius: .45rem; text-decoration: none; font-weight: 650; }
+.action span { margin-left: .6rem; }
+:focus-visible { outline: 3px solid #b34c28; outline-offset: 3px; }
