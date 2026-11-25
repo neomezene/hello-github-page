@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src https://0.peerjs.com wss://0.peerjs.com; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <title>P2P QR</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+<main>
+  <header><h1>P2P QR</h1><span id="role">Computer · host</span></header>
+  <div class="status-row"><span class="dot" id="dot"></span><p id="status" role="status" aria-live="polite">Ready</p></div>
+  <p id="error" class="error" role="alert" hidden></p>
+  <div class="actions">
+    <button id="create" type="button">Create session</button>
+    <button id="retry" type="button" hidden>Try again</button>
+    <button id="end" class="secondary" type="button" hidden>End session</button>
+  </div>
+  <section id="invite" hidden aria-label="Invitation">
+    <div id="qr" role="img" aria-label="Session invitation QR code"></div>
+    <div><p>Scan with your phone camera.</p><p id="expiry"></p>
+      <p class="muted">Anyone with this QR code can request access. Keep it private.</p>
+      <details><summary>Invitation link</summary><a id="invite-link" referrerpolicy="no-referrer">Open on another device</a></details>
+    </div>
+  </section>
+  <section id="approval" hidden>
+    <p>The phone verified the invitation and is ready to connect.</p>
+    <div class="actions"><button id="accept" type="button">Accept phone</button><button id="reject" class="secondary" type="button">Decline and end session</button></div>
+  </section>
+  <section id="chat" aria-label="Messages" hidden>
+    <ol id="messages" role="log" aria-live="polite" aria-label="Message history"></ol>
+    <form id="send-form" novalidate>
+      <label for="message">Message</label>
+      <textarea id="message" rows="2" maxlength="4000" placeholder="Write a message…" required disabled></textarea>
+      <button id="send" type="submit" disabled>Send</button>
+    </form>
+  </section>
+  <details id="diagnostics">
+    <summary>Connection diagnostics</summary>
+    <dl>
+      <dt>WebRTC</dt><dd id="diag-connection">new</dd>
+      <dt>ICE</dt><dd id="diag-ice">new</dd>
+      <dt>DataChannel</dt><dd id="diag-channel">closed</dd>
+      <dt>Direct P2P</dt><dd id="diag-direct">Unconfirmed</dd>
+      <dt>Local / remote ICE candidate</dt><dd id="diag-types">— / —</dd>
+      <dt>RTT</dt><dd id="diag-rtt">—</dd>
+      <dt>Bytes sent / received</dt><dd id="diag-bytes">0 / 0 B</dd>
+      <dt>Signaling</dt><dd id="diag-signaling">inactive</dd>
+      <dt>STUN</dt><dd>Cloudflare · 3478</dd>
+      <dt>TURN</dt><dd>disabled</dd>
+      <dt>Error</dt><dd id="diag-error">—</dd>
+    </dl>
+  </details>
+  <footer>Pairing via PeerJS Cloud · Messages via WebRTC</footer>
+  <noscript>Enable JavaScript to connect using WebRTC.</noscript>
+</main>
+</body>
+</html>
